@@ -1,0 +1,6 @@
+pre-commit:
+  parallel: true
+  commands:
+    rubocop:
+      glob: "*.rb"
+      run: bundle exec rubocop {staged_files} -a --disable-uncorrectable --parallel && git add {staged_files}
