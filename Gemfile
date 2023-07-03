@@ -14,7 +14,7 @@ gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :production, :development do
-  gem 'mysql2', '~> 0.5'
+  gem 'pg', '~> 1.1'
 end
 
 group :development, :test do
