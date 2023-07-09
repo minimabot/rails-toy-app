@@ -1,0 +1,18 @@
+<div class="w-96 mx-auto">
+	<h1 class="font-bold text-4xl">User</h1>
+  <div class="mt-8 mx-auto flex justify-center">
+		<div>
+			<% if notice.present? %>
+				<p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+			<% end %>
+			<%= render 'user', user: @user %>
+			<div class="mt-8">
+				<%= link_to 'Edit', edit_user_path(@user), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+				<div class="inline-block ml-2">
+					<%= button_to 'Delete', user_path(@user), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+				</div>
+				<%= link_to 'Back', users_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+			</div>
+		</div>
+  </div>
+</div>
