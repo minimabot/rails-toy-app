@@ -33,6 +33,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'faker', '~> 3.1.0'
   gem 'selenium-webdriver'
   gem 'sqlite3', '~> 1.4'
   gem 'webdrivers'
