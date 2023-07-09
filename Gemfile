@@ -3,8 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
+gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'importmap-rails'
+gem 'pagy', '~> 6.0'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.5'
 gem 'sprockets-rails'
