@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_705_004_342) do # rubocop:todo Metrics/BlockLength
+ActiveRecord::Schema[7.0].define(version: 20_230_717_123_826) do # rubocop:todo Metrics/BlockLength
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -43,6 +43,28 @@ ActiveRecord::Schema[7.0].define(version: 20_230_705_004_342) do # rubocop:todo 
     t.index %w[blob_id variation_digest], name: 'index_active_storage_variant_records_uniqueness', unique: true
   end
 
+  create_table 'permissions', force: :cascade do |t|
+    t.string 'name', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['name'], name: 'index_permissions_on_name', unique: true
+  end
+
+  create_table 'role_permissions', id: false, force: :cascade do |t|
+    t.bigint 'role_id', null: false
+    t.bigint 'permission_id', null: false
+    t.index ['permission_id'], name: 'index_role_permissions_on_permission_id'
+    t.index %w[role_id permission_id], name: 'index_role_permissions_on_role_id_and_permission_id', unique: true
+    t.index ['role_id'], name: 'index_role_permissions_on_role_id'
+  end
+
+  create_table 'roles', force: :cascade do |t|
+    t.string 'name', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['name'], name: 'index_roles_on_name', unique: true
+  end
+
   create_table 'users', force: :cascade do |t|
     t.string 'first_name', limit: 50, null: false
     t.string 'last_name', limit: 50, null: false
@@ -60,4 +82,6 @@ ActiveRecord::Schema[7.0].define(version: 20_230_705_004_342) do # rubocop:todo 
 
   add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
   add_foreign_key 'active_storage_variant_records', 'active_storage_blobs', column: 'blob_id'
+  add_foreign_key 'role_permissions', 'permissions'
+  add_foreign_key 'role_permissions', 'roles'
 end
