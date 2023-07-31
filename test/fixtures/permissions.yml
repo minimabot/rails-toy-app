@@ -1,0 +1,8 @@
+create_user:
+  name: create_user
+
+update_user:
+  name: update_user
+
+delete_user:
+  name: delete_user

@@ -1,0 +1,6 @@
+admin:
+  name: admin
+  permissions: create_user, update_user, delete_user
+
+staff:
+  name: staff
